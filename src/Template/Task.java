@@ -1,16 +1,17 @@
 package Template;
 
-public abstract class  Task {
-  AuditTrail audit;
-  public Task(AuditTrail audit) {
-	  this.audit=audit;
-  }
-  
-  public void doExecute(Task task) {
-	  audit.record(task);
-	  task.execute(task);
-  }
-  
-  protected abstract void execute(Task task);
-  
+public abstract class Task {
+    AuditTrail audit;
+
+    public Task() {
+        this.audit = new AuditTrail();
+    }
+
+    public void doExecute() {
+        audit.record(this);
+        execute();
+    }
+
+    protected abstract void execute();
+
 }
